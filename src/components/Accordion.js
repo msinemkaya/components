@@ -2,7 +2,15 @@ import { useState } from 'react'
 import { BiChevronDown, BiChevronRight } from 'react-icons/bi'
 
 export default function Accordion({ items }) {
-  const [expandedIndex, setExpandedIndex] = useState(0)
+  const [expandedIndex, setExpandedIndex] = useState(-1)
+
+  const handleClick = (index) => {
+    if(expandedIndex === index) {
+      setExpandedIndex(-1)
+    }else{
+      setExpandedIndex(index)
+    }
+  }
 
   return (
     <>
@@ -16,7 +24,7 @@ export default function Accordion({ items }) {
 
         return (
           <div className='border-x border-t rounded' key={item.id}>
-            <div className='flex p-3 bg-gray-50 border-b items-center cursor-pointer justify-between' onClick={() => setExpandedIndex(index)}>
+            <div className='flex p-3 bg-gray-50 border-b items-center cursor-pointer justify-between' onClick={() => handleClick(index)}>
               {item.label}
               {icon}
             </div>
