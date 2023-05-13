@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+import classNames from 'classnames';
 
 export default function Button({
   children,
@@ -10,9 +10,20 @@ export default function Button({
   outline,
   rounded,
 }) {
+
+  // what this library does is it concats the seperated strings into one
+  // it can also take an object and if the VALUE is true KEY is going to be added to the concatted strings too
+  const classes = classNames('px-3 py-1.5 border text-white', {
+    'border-blue-600 bg-blue-500': primary,
+    'border-yellow-600 bg-yellow-500': warning,
+    'border-red-600 bg-red-500': danger,
+    'border-gray-900 bg-gray-900': secondary,
+    'border-green-600 bg-green-500': success,
+  })
+
   return (
     <>
-      <button>{children}</button>
+      <button className={classes}>{children}</button>
     </>
   );
 }

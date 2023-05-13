@@ -3,7 +3,7 @@ import Button from './Button';
 function App() {
   return (
     <>
-      <Button primary> hakan </Button>
+      <Button success> hakan </Button>
     </>
   );
 }
