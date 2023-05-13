@@ -19,6 +19,13 @@ export default function Button({
     'border-red-600 bg-red-500': danger,
     'border-gray-900 bg-gray-900': secondary,
     'border-green-600 bg-green-500': success,
+    'rounded-full': rounded,
+    'bg-transparent': outline,
+    'text-blue-500': outline && primary,
+    'text-gray-900': outline && secondary,
+    'text-green-500': outline && success,
+    'text-yellow-500': outline && warning,
+    'text-red-500': outline && danger,
   })
 
   return (
