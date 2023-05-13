@@ -1,21 +1,8 @@
-import Button from './Button';
+import ButtonPage from './pages/ButtonPage';
 
 function App() {
-
-  const handleClick = () => {
-    console.log('clicked')
-  }
-
-  const handleAnotherClick = () => {
-    console.log('clicked too')
-  }
-  
-
-  return (
-    <>
-      <Button success onClick={handleClick}> hakan </Button>
-      <Button primary rounded onClick={handleAnotherClick}> meliko </Button>
-    </>
+  return(
+    <ButtonPage />
   );
 }
 
