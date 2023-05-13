@@ -9,6 +9,9 @@ export default function Button({
   success,
   outline,
   rounded,
+  ...rest
+  // we take all the remaining props that will not be used directly with Button element but
+  // rather will be passed to <button> to use in the name of rest (in our case these are events)
 }) {
 
   // what this library does is it concats the seperated strings into one
@@ -30,7 +33,8 @@ export default function Button({
 
   return (
     <>
-      <button className={classes}>{children}</button>
+      {/* we give the rest object to the button as a prop using destruction */}
+      <button className={classes} {...rest}>{children}</button>
     </>
   );
 }
