@@ -14,18 +14,18 @@ export default function Dropdown({ options, selection, onSelect }){
   }
 
   return(
-    <>
-      <div onClick={handleClick}>
+    <div className='w-48 relative'>
+      <div className='flex justify-between items-center cursor-pointer border rounded p-3 shadow bg-white w-full' onClick={handleClick}>
         {/* {selection ? selection.label : 'Select..' } */}
         {selection?.label || 'Select..'}
       </div>
       {isOpen && (
-        <div>
+        <div className='absolute top-full border rounded p-3 shadow bg-white w-full'>
           {options.map((option) => (
-            <div onClick={() => handleOptionClick(option)} key={option.value}> {option.label} </div>
+            <div className='hover:bg-sky-100 rounded cursor-pointer p-1' onClick={() => handleOptionClick(option)} key={option.value}> {option.label} </div>
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
