@@ -15,7 +15,10 @@ export default function Dropdown({ options, selection, onSelect }){
 
   return(
     <>
-      <div onClick={handleClick}>{selection ? selection.label : 'Select..' }</div>
+      <div onClick={handleClick}>
+        {/* {selection ? selection.label : 'Select..' } */}
+        {selection?.label || 'Select..'}
+      </div>
       {isOpen && (
         <div>
           {options.map((option) => (
