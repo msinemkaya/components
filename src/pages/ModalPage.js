@@ -6,6 +6,10 @@ export default function ModalPage(){
 
   const [showModal, setShowModal] = useState(false)
 
+  const handleClose = () => {
+    setShowModal(false)
+  }
+
   const handleClick = () => {
     setShowModal(true)
   }
@@ -13,7 +17,7 @@ export default function ModalPage(){
   return(
     <div>
       <Button primary onClick={handleClick}>Open Modal</Button>
-      {showModal && <Modal onClose={showModal}/>}
+      {showModal && <Modal onClose={handleClose}/>}
     </div>
   );
 }

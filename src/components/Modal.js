@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 
-export default function Modal(){
+export default function Modal({ onClose }){
 
   // with portal you are telling react to place the html produced by this component to the given place in document
   // insted of where it would be normally
@@ -13,7 +13,7 @@ export default function Modal(){
   // thats why insted of putting it deep inside we are creating a portal on the html document to place it where we want
   return ReactDOM.createPortal(
     <div>
-      <div className='absolute inset-0 bg-gray-300 opacity-80'></div>
+      <div onClick={onClose} className='absolute inset-0 bg-gray-300 opacity-80'></div>
       <div className='absolute inset-40 p-10 bg-white'></div>
     </div>,
 
