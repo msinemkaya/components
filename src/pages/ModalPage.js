@@ -14,10 +14,18 @@ export default function ModalPage(){
     setShowModal(true)
   }
 
+  const actionBar = (
+    <Button primary onClick={handleClose}>Accept</Button>
+  )
+
   return(
     <div>
       <Button primary onClick={handleClick}>Open Modal</Button>
-      {showModal && <Modal onClose={handleClose}/>}
+      {showModal && (
+        <Modal onClose={handleClose} actionBar={actionBar}>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, deserunt.</p>
+        </Modal>
+      )}
     </div>
   );
 }
