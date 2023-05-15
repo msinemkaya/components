@@ -6,6 +6,7 @@ export default function Sidebar(){
     { label: 'Dropdown', path: '/'},
     { label: 'Button', path: '/button'},
     { label: 'Accordion', path: '/accordion'},
+    { label: 'Modal', path: '/modal'},
   ]
 
   return(
