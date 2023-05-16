@@ -9,9 +9,26 @@ export default function TablePage(){
     { name: 'Lime', color: 'bg-green-500', score: 4 },
   ]
 
+  // we create a config object to make our table less hardcoded and reusable
+  // so we pass a render function for the each column to determine what we want to show from our fruit object
+  const config = [
+    { 
+      label: 'Name',
+      render: (fruit) => fruit.name,
+    },
+    { 
+      label: 'Color',
+      render: (fruit) => fruit.color
+    },
+    { 
+      label: 'Score',
+      render: (fruit) => fruit.score
+    },
+  ]
+
   return(
     <>
-      <Table data={data}/>
+      <Table data={data} config={config}/>
     </>
   );
 }
