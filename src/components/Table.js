@@ -9,8 +9,8 @@ export default function Table({ data, config }){
         </tr>
       </thead>
       <tbody>
-        {data.map((fruit) => (
-          <tr className='border-b' key={fruit.name}>
+        {data.map((fruit, index) => (
+          <tr className='border-b' key={index}>
             {/* <td className='p-3'>
               not so perfect way of using the config object
               {config[0].render(fruit)}
