@@ -18,7 +18,7 @@ export default function TablePage(){
     },
     { 
       label: 'Color',
-      render: (fruit) => fruit.color
+      render: (fruit) => <div className={`${fruit.color} p-3 m-2`}></div>
     },
     { 
       label: 'Score',
