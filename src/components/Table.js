@@ -11,8 +11,8 @@ export default function Table({ data, config }){
       <tbody>
         {data.map((fruit) => (
           <tr className='border-b' key={fruit.name}>
-            <td className='p-3'>
-              {/* not so perfect way of using the config object*/}
+            {/* <td className='p-3'>
+              not so perfect way of using the config object
               {config[0].render(fruit)}
             </td>
             <td className='p-3'>
@@ -20,7 +20,12 @@ export default function Table({ data, config }){
             </td>
             <td className='p-3'>
               {fruit.score}
-            </td>
+            </td> */}
+
+            {/* this is better */}
+            {config.map((col) => (
+              <td key={col.label}>{col.render(fruit)}</td>
+            ))}
           </tr> 
         ))}
       </tbody>
