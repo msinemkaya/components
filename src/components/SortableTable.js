@@ -36,6 +36,12 @@ export default function SortableTable(props){
         // } else if (sortOrder === 'desc') {
           //   setSortOrder(null)
           // }
+
+          if(sortBy && label !== sortBy) {
+            setSortOrder('asc')
+            setSortBy(label)
+            return
+          }
           
           switch (sortOrder) {
             case null:
