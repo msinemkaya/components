@@ -1,4 +1,5 @@
-import Table from '../components/Table';
+// import Table from '../components/Table';
+import SortableTable from '../components/SortableTable';
 
 export default function TablePage(){
 
@@ -15,6 +16,7 @@ export default function TablePage(){
     { 
       label: 'Name',
       render: (fruit) => fruit.name,
+      sortValue: (fruit) => fruit.name
     },
     { 
       label: 'Color',
@@ -23,13 +25,19 @@ export default function TablePage(){
     { 
       label: 'Score',
       render: (fruit) => fruit.score,
-      header: () => <th className='bg-red-500'>Score</th>
+
+      // we will add this with sortable table from now on
+      // header: () => <th className='bg-red-500'>Score</th>
+
+      // now we are passing a sortValue function instead
+      sortValue: (fruit) => fruit.score
     },
   ]
 
   return(
     <>
-      <Table data={data} config={config}/>
+      {/* we are showing sortableTable instead of table */}
+      <SortableTable data={data} config={config}/>
     </>
   );
 }
