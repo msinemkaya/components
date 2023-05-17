@@ -1,11 +1,19 @@
+import { Fragment } from 'react';
+
 export default function Table({ data, config }){
   return(
     <table className='table-auto border-spacing-2'>
       <thead>
         <tr className='border-b-2'>
-          {config.map((column) => (
-            <th key={column.label}>{column.label}</th>
-          ))}
+          {config.map((column) => {
+
+            if(column.header) {
+              {/* we are using fragment (<></>) to be able to give a key value without causing any problems to table structure */}
+              return <Fragment key={column.label}>{column.header()}</Fragment>
+            }
+
+            return <th key={column.label}>{column.label}</th>
+          })}
         </tr>
       </thead>
       <tbody>

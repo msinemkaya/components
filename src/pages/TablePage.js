@@ -22,7 +22,8 @@ export default function TablePage(){
     },
     { 
       label: 'Score',
-      render: (fruit) => fruit.score
+      render: (fruit) => fruit.score,
+      header: () => <th className='bg-red-500'>Score</th>
     },
   ]
 
