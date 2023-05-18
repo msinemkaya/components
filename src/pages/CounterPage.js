@@ -1,22 +1,38 @@
 import { useReducer } from 'react'
 import Button from '../components/Button'
 import Panel from '../components/Panel'
+import { produce } from 'immer'
 
 // state is our state
 // action is whatever we pass into dispatch
 const reducer = (state, action) => {
   switch (action.type) {
     case 'INCREMENT':
-      return { ...state, count: state.count + 1 }
+      // return { ...state, count: state.count + 1 }
+
+      // normally we cant update the state directly and we return a new object 
+      // but with immer library you dont need to. it takes these steps for you
+      state.count = state.count + 1;
+      return
 
     case 'DECREMENT':
-      return { ...state, count: state.count - 1 }
+      // return { ...state, count: state.count - 1 }
+
+      state.count = state.count -1
+      return
 
     case 'VALUE_CHANGE':
-      return { ...state, valueToAdd: action.payload }
+      // return { ...state, valueToAdd: action.payload }
+
+      state.valueToAdd = action.payload
+      return
 
     case 'ADD_VALUE':
-      return { ...state, count: state.count + state.valueToAdd, valueToAdd: 0 }
+      // return { ...state, count: state.count + state.valueToAdd, valueToAdd: 0 }
+
+      state.count = state.count + state.valueToAdd
+      state.valueToAdd = 0
+      return
 
     default:
       throw new Error('unexpected action type')
@@ -33,7 +49,13 @@ export default function CounterPage({ initialCount }) {
   // 2nd argument of the useReducer (initialValue): initial values of the states
   // reducer: the function we use to determine which action will be taken for which state (state key to be precise because
   // we only have one state which is an object with keys, so this way we compress our different states into one)
-  const [state, dispatch] = useReducer(reducer, {
+    // const [state, dispatch] = useReducer(reducer, {
+    //   count: initialCount,
+    //   valueToAdd: 0,
+    // })
+
+  // we wrapped the reducer function with a function called produce to use immer library
+  const [state, dispatch] = useReducer(produce(reducer), {
     count: initialCount,
     valueToAdd: 0,
   })
