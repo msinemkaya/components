@@ -1,11 +1,13 @@
-import { useState } from 'react'
 import Table from './Table'
 import { GoArrowSmallDown, GoArrowSmallUp } from 'react-icons/go'
+import useSort from '../hooks/use-sort'
 
 export default function SortableTable(props) {
   const { config, data } = props
-  const [sortOrder, setSortOrder] = useState(null)
-  const [sortBy, setSortBy] = useState(null)
+  
+  // we took all the states and reletad functions to those states that not contain any jsx and moved them to a custom hook
+  // this way we made sorting data reusable for all the components
+  const { sortBy, sortOrder, sortedData, setSortLabel } = useSort(data, config)
 
   const updatedConfig = config.map((column) => {
     if (!column.sortValue) {
@@ -19,7 +21,7 @@ export default function SortableTable(props) {
       header: () => (
         <th
           className='cursor-pointer hover:bg-gray-100'
-          onClick={() => handleClick(column.label)}
+          onClick={() => setSortLabel(column.label)}
         >
           <div className='flex items-center'>
             {getIcons(column.label, sortBy, sortOrder)}
@@ -29,57 +31,6 @@ export default function SortableTable(props) {
       ),
     }
   })
-
-  const handleClick = (label) => {
-    // if (sortOrder === null) {
-    //   setSortOrder('asc')
-    // } else if (sortOrder === 'asc') {
-    //   setSortOrder('desc')
-    // } else if (sortOrder === 'desc') {
-    //   setSortOrder(null)
-    // }
-
-    if (sortBy && label !== sortBy) {
-      setSortOrder('asc')
-      setSortBy(label)
-      return
-    }
-
-    switch (sortOrder) {
-      case null:
-        setSortOrder('asc')
-        setSortBy(label)
-        break
-      case 'asc':
-        setSortOrder('desc')
-        setSortBy(label)
-        break
-      case 'desc':
-        setSortOrder(null)
-        setSortBy(null)
-        break
-    }
-  }
-
-  let sortedData = data
-  if (sortOrder && sortBy) {
-    const { sortValue } = config.find((column) => column.label === sortBy)
-
-    // we make a copy of the data because we dont want to change(modify) it directly since it is a prop
-    // we never ever modify a prop directly
-    sortedData = [...data].sort((a, b) => {
-      const valueA = sortValue(a)
-      const valueB = sortValue(b)
-
-      const reverseOrder = sortOrder === 'asc' ? 1 : -1
-
-      if (typeof valueA === 'string') {
-        return valueA.localeCompare(valueB) * reverseOrder
-      } else {
-        return (valueA - valueB) * reverseOrder
-      }
-    })
-  }
 
   return (
     <>
