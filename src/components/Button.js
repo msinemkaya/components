@@ -9,6 +9,7 @@ export default function Button({
   success,
   outline,
   rounded,
+  className,
   ...rest
   // we take all the remaining props that will not be used directly with Button element but
   // rather will be passed to <button> to use in the name of rest (in our case these are events)
@@ -16,12 +17,12 @@ export default function Button({
 
   // what this library does is it concats the seperated strings into one
   // it can also take an object and if the VALUE is true KEY is going to be added to the concatted strings too
-  const classes = classNames('px-3 py-1.5 border text-white', {
-    'border-blue-600 bg-blue-500': primary,
-    'border-yellow-600 bg-yellow-500': warning,
-    'border-red-600 bg-red-500': danger,
-    'border-gray-900 bg-gray-900': secondary,
-    'border-green-600 bg-green-500': success,
+  const classes = classNames('px-3 py-1.5 border', className, {
+    'border-blue-600 bg-blue-500 text-white': primary,
+    'border-yellow-600 bg-yellow-500 text-white': warning,
+    'border-red-600 bg-red-500 text-white': danger,
+    'border-gray-900 bg-gray-900 text-white': secondary,
+    'border-green-600 bg-green-500 text-white': success,
     'rounded-full': rounded,
     'bg-transparent': outline,
     'text-blue-500': outline && primary,
@@ -29,7 +30,7 @@ export default function Button({
     'text-green-500': outline && success,
     'text-yellow-500': outline && warning,
     'text-red-500': outline && danger,
-  })
+  },)
 
   return (
     <>
